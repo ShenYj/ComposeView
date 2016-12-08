@@ -10,7 +10,7 @@
 
 @interface JSComposeView : UIView
 
-/** 展示编辑视图 */
+/** 展示编辑视图,供外界调用 */
 - (void)showComposeView;
 
 @end

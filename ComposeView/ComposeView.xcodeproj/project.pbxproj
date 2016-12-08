@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		236E066F9F611AA7FBF22D80 /* libPods-ComposeView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C03195B6DAE13D37C4CD4A55 /* libPods-ComposeView.a */; };
 		F7B378851DF8F69400F17353 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B378791DF8F69400F17353 /* ViewController.m */; };
 		F7B378861DF8F69400F17353 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B3787D1DF8F69400F17353 /* AppDelegate.m */; };
 		F7B378871DF8F69400F17353 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7B3787E1DF8F69400F17353 /* Assets.xcassets */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C03195B6DAE13D37C4CD4A55 /* libPods-ComposeView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ComposeView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F510BB5815BBD71A267DBE2E /* Pods-ComposeView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComposeView.release.xcconfig"; path = "Pods/Target Support Files/Pods-ComposeView/Pods-ComposeView.release.xcconfig"; sourceTree = "<group>"; };
 		F7B3785C1DF8F63300F17353 /* ComposeView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComposeView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7B378701DF8F63300F17353 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../Info.plist; sourceTree = "<group>"; };
 		F7B378781DF8F69400F17353 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -33,6 +36,7 @@
 		F7B378921DF8F97800F17353 /* JSTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTabBar.m; sourceTree = "<group>"; };
 		F7B378941DF9066600F17353 /* JSComposeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSComposeView.h; sourceTree = "<group>"; };
 		F7B378951DF9066600F17353 /* JSComposeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSComposeView.m; sourceTree = "<group>"; };
+		FE7EF7E13A59394B44988F43 /* Pods-ComposeView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComposeView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ComposeView/Pods-ComposeView.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,17 +44,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				236E066F9F611AA7FBF22D80 /* libPods-ComposeView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		62A9C0F8E81722380C7785A8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C03195B6DAE13D37C4CD4A55 /* libPods-ComposeView.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7272E682203A53833D92ED81 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FE7EF7E13A59394B44988F43 /* Pods-ComposeView.debug.xcconfig */,
+				F510BB5815BBD71A267DBE2E /* Pods-ComposeView.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F7B378531DF8F63300F17353 = {
 			isa = PBXGroup;
 			children = (
 				F7B3785E1DF8F63300F17353 /* ComposeView */,
 				F7B3785D1DF8F63300F17353 /* Products */,
+				7272E682203A53833D92ED81 /* Pods */,
+				62A9C0F8E81722380C7785A8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,9 +162,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F7B378731DF8F63300F17353 /* Build configuration list for PBXNativeTarget "ComposeView" */;
 			buildPhases = (
+				7003D0566781E770D25547E5 /* [CP] Check Pods Manifest.lock */,
 				F7B378581DF8F63300F17353 /* Sources */,
 				F7B378591DF8F63300F17353 /* Frameworks */,
 				F7B3785A1DF8F63300F17353 /* Resources */,
+				9114C28D1D9ED4405F3D2F06 /* [CP] Embed Pods Frameworks */,
+				2AD56FD88CAA9B9B2E6FF995 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -195,6 +222,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2AD56FD88CAA9B9B2E6FF995 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ComposeView/Pods-ComposeView-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7003D0566781E770D25547E5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9114C28D1D9ED4405F3D2F06 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ComposeView/Pods-ComposeView-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F7B378581DF8F63300F17353 /* Sources */ = {
@@ -299,6 +374,7 @@
 		};
 		F7B378741DF8F63300F17353 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE7EF7E13A59394B44988F43 /* Pods-ComposeView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ComposeView/Info.plist;
@@ -310,6 +386,7 @@
 		};
 		F7B378751DF8F63300F17353 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F510BB5815BBD71A267DBE2E /* Pods-ComposeView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ComposeView/Info.plist;
@@ -338,6 +415,7 @@
 				F7B378751DF8F63300F17353 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
