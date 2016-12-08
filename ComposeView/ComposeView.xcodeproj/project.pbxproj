@@ -14,6 +14,7 @@
 		F7B3788E1DF8F76200F17353 /* JSMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B3788D1DF8F76200F17353 /* JSMainViewController.m */; };
 		F7B378901DF8F86C00F17353 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7B3788F1DF8F86C00F17353 /* Launch Screen.storyboard */; };
 		F7B378931DF8F97800F17353 /* JSTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B378921DF8F97800F17353 /* JSTabBar.m */; };
+		F7B378961DF9066600F17353 /* JSComposeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B378951DF9066600F17353 /* JSComposeView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		F7B3788F1DF8F86C00F17353 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		F7B378911DF8F97800F17353 /* JSTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTabBar.h; sourceTree = "<group>"; };
 		F7B378921DF8F97800F17353 /* JSTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTabBar.m; sourceTree = "<group>"; };
+		F7B378941DF9066600F17353 /* JSComposeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSComposeView.h; sourceTree = "<group>"; };
+		F7B378951DF9066600F17353 /* JSComposeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSComposeView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +125,8 @@
 		F7B3788B1DF8F69900F17353 /* ComposeView */ = {
 			isa = PBXGroup;
 			children = (
+				F7B378941DF9066600F17353 /* JSComposeView.h */,
+				F7B378951DF9066600F17353 /* JSComposeView.m */,
 			);
 			path = ComposeView;
 			sourceTree = "<group>";
@@ -198,6 +203,7 @@
 			files = (
 				F7B378861DF8F69400F17353 /* AppDelegate.m in Sources */,
 				F7B378931DF8F97800F17353 /* JSTabBar.m in Sources */,
+				F7B378961DF9066600F17353 /* JSComposeView.m in Sources */,
 				F7B3788A1DF8F69400F17353 /* main.m in Sources */,
 				F7B3788E1DF8F76200F17353 /* JSMainViewController.m in Sources */,
 				F7B378851DF8F69400F17353 /* ViewController.m in Sources */,

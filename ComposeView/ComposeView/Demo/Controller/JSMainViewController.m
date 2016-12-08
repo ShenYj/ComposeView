@@ -8,7 +8,7 @@
 
 #import "JSMainViewController.h"
 #import "ViewController.h"
-
+#import "JSComposeView.h"
 
 @implementation JSMainViewController
 
@@ -38,7 +38,9 @@
 #pragma mark - JSTabBarComposeDelegate
 - (void)tabBar:(JSTabBar *)tabBar withComposeButtonClick:(UIButton *)composeButton {
     
-    NSLog(@"%s",__func__);
+    JSComposeView *composeView = [[JSComposeView alloc] init];
+    [composeView showComposeView];
+    
 }
 
 @end
