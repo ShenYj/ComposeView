@@ -59,6 +59,12 @@
     
 }
 
+#pragma mark
+#pragma mark 
+- (void)clickCloseButton:(UIButton *)sender {
+    [self removeFromSuperview];
+}
+
 
 #pragma mark
 #pragma mark - lazy
@@ -91,6 +97,7 @@
             make.height.mas_equalTo(_bottom_View);
             make.width.mas_equalTo(_bottom_View.mas_height);
         }];
+        [closeButton addTarget:self action:@selector(clickCloseButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _bottom_View;
 }
