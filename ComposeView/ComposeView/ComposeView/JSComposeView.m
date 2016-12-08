@@ -7,6 +7,7 @@
 //
 
 #import "JSComposeView.h"
+#import "Masonry.h"
 
 @interface JSComposeView ()
 
@@ -37,7 +38,10 @@
     self.visualEffectView.frame = self.bounds;
     
     [self addSubview:self.bottom_View];
-    
+    [self.bottom_View mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(self);
+        make.height.mas_equalTo(44);
+    }];
     
     
     [self addSubview:self.compose_slogan_IV];
@@ -79,9 +83,14 @@
         _bottom_View = [[UIView alloc] init];
         _bottom_View.backgroundColor = [UIColor whiteColor];
         UIButton *closeButton = [[UIButton alloc] init];
-        [closeButton setImage:[UIImage imageNamed:@"tabbar_compose_background_icon_close@3x"] forState:UIControlStateNormal];
+        [closeButton setBackgroundImage:[UIImage imageNamed:@"tabbar_compose_background_icon_close"] forState:UIControlStateNormal];
         [_bottom_View addSubview:closeButton];
-        closeButton.frame = CGRectInset(closeButton.bounds, 200, 0);
+        [closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(_bottom_View);
+            make.centerX.mas_equalTo(_bottom_View);
+            make.height.mas_equalTo(_bottom_View);
+            make.width.mas_equalTo(_bottom_View.mas_height);
+        }];
     }
     return _bottom_View;
 }
