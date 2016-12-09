@@ -7,6 +7,7 @@
 //
 
 #import "JSComposeView.h"
+#import "JSComposeButton.h"
 #import "Masonry.h"
 
 @interface JSComposeView ()
@@ -47,7 +48,13 @@
     [self addSubview:self.compose_slogan_IV];
     self.compose_slogan_IV.frame = CGRectMake(50, 100, 200, 60);
     
+    JSComposeButton *composeButton = [[JSComposeButton alloc] initWithTitle:@"demo" imageName:@"tabbar_compose_more"];
     
+    [self addSubview:composeButton];
+    [composeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self);
+        make.centerX.mas_equalTo(self);
+    }];
     
 }
 

@@ -16,6 +16,7 @@
 		F7B378901DF8F86C00F17353 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7B3788F1DF8F86C00F17353 /* Launch Screen.storyboard */; };
 		F7B378931DF8F97800F17353 /* JSTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B378921DF8F97800F17353 /* JSTabBar.m */; };
 		F7B378961DF9066600F17353 /* JSComposeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B378951DF9066600F17353 /* JSComposeView.m */; };
+		F7B742291DFA4FAC0077C713 /* JSComposeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B742281DFA4FAC0077C713 /* JSComposeButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,8 @@
 		F7B378921DF8F97800F17353 /* JSTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTabBar.m; sourceTree = "<group>"; };
 		F7B378941DF9066600F17353 /* JSComposeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSComposeView.h; sourceTree = "<group>"; };
 		F7B378951DF9066600F17353 /* JSComposeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSComposeView.m; sourceTree = "<group>"; };
+		F7B742271DFA4FAC0077C713 /* JSComposeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSComposeButton.h; sourceTree = "<group>"; };
+		F7B742281DFA4FAC0077C713 /* JSComposeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSComposeButton.m; sourceTree = "<group>"; };
 		FE7EF7E13A59394B44988F43 /* Pods-ComposeView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComposeView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ComposeView/Pods-ComposeView.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,8 +103,8 @@
 			children = (
 				F7B378771DF8F69400F17353 /* Controller */,
 				F7B3787A1DF8F69400F17353 /* Model */,
-				F7B3787B1DF8F69400F17353 /* supportingFiles */,
 				F7B378841DF8F69400F17353 /* View */,
+				F7B3787B1DF8F69400F17353 /* supportingFiles */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -151,6 +154,8 @@
 			children = (
 				F7B378941DF9066600F17353 /* JSComposeView.h */,
 				F7B378951DF9066600F17353 /* JSComposeView.m */,
+				F7B742271DFA4FAC0077C713 /* JSComposeButton.h */,
+				F7B742281DFA4FAC0077C713 /* JSComposeButton.m */,
 			);
 			path = ComposeView;
 			sourceTree = "<group>";
@@ -282,6 +287,7 @@
 				F7B3788A1DF8F69400F17353 /* main.m in Sources */,
 				F7B3788E1DF8F76200F17353 /* JSMainViewController.m in Sources */,
 				F7B378851DF8F69400F17353 /* ViewController.m in Sources */,
+				F7B742291DFA4FAC0077C713 /* JSComposeButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
