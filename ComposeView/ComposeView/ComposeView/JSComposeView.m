@@ -16,6 +16,8 @@
 @property (nonatomic) UIVisualEffectView *visualEffectView;
 /** slogan */
 @property (nonatomic) UIImageView *compose_slogan_IV;
+/** 中间的按钮区ScrollView */
+@property (nonatomic) UIScrollView *centerArea_ScrollView;
 /** 底部View */
 @property (nonatomic) UIView *bottom_View;
 
@@ -39,14 +41,24 @@
     self.visualEffectView.frame = self.bounds;
     
     [self addSubview:self.bottom_View];
+    [self addSubview:self.compose_slogan_IV];
+    [self addSubview:self.centerArea_ScrollView];
+    
     [self.bottom_View mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.bottom.mas_equalTo(self);
         make.height.mas_equalTo(44);
     }];
     
+    [self.centerArea_ScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.bottom_View.mas_top).mas_offset(42);
+        make.left.right.mas_equalTo(self);
+        make.height.mas_equalTo(224);
+    }];
     
-    [self addSubview:self.compose_slogan_IV];
-    self.compose_slogan_IV.frame = CGRectMake(50, 100, 200, 60);
+    [self.compose_slogan_IV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self);
+        make.top.mas_equalTo(self).mas_offset(100);
+    }];
     
     JSComposeButton *composeButton = [[JSComposeButton alloc] initWithTitle:@"demo" imageName:@"tabbar_compose_more"];
     
@@ -56,7 +68,9 @@
         make.centerX.mas_equalTo(self);
     }];
     
+    
 }
+
 
 // 展示视图
 - (void)showComposeView {
@@ -89,6 +103,13 @@
         _compose_slogan_IV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"compose_slogan"]];
     }
     return _compose_slogan_IV;
+}
+
+- (UIScrollView *)centerArea_ScrollView {
+    if (!_centerArea_ScrollView) {
+        _centerArea_ScrollView = [[UIScrollView alloc] init];
+    }
+    return _centerArea_ScrollView;
 }
 
 - (UIView *)bottom_View {
