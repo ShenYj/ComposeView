@@ -38,34 +38,35 @@
     
     
     [self addSubview:self.visualEffectView];
-    self.visualEffectView.frame = self.bounds;
+    [self.visualEffectView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self);
+    }];
     
     [self addSubview:self.bottom_View];
     [self addSubview:self.compose_slogan_IV];
     [self addSubview:self.centerArea_ScrollView];
     
-    [self.bottom_View mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.mas_equalTo(self);
-        make.height.mas_equalTo(44);
-    }];
-    
-    [self.centerArea_ScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.bottom_View.mas_top).mas_offset(42);
-        make.left.right.mas_equalTo(self);
-        make.height.mas_equalTo(224);
-    }];
-    
     [self.compose_slogan_IV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self);
         make.top.mas_equalTo(self).mas_offset(100);
     }];
+    [self.bottom_View mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.mas_equalTo(self);
+        make.height.mas_equalTo(44);
+    }];
+    [self.centerArea_ScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(self);
+        make.height.mas_equalTo(224);
+        make.bottom.mas_equalTo(self.bottom_View.mas_top).mas_offset(-60);
+    }];
+    
     
     JSComposeButton *composeButton = [[JSComposeButton alloc] initWithTitle:@"demo" imageName:@"tabbar_compose_more"];
     
-    [self addSubview:composeButton];
+    [self.centerArea_ScrollView addSubview:composeButton];
     [composeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self);
-        make.centerX.mas_equalTo(self);
+        make.centerY.mas_equalTo(self.centerArea_ScrollView);
+        make.centerX.mas_equalTo(self.centerArea_ScrollView);
     }];
     
     
@@ -108,6 +109,9 @@
 - (UIScrollView *)centerArea_ScrollView {
     if (!_centerArea_ScrollView) {
         _centerArea_ScrollView = [[UIScrollView alloc] init];
+        _centerArea_ScrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width*2, 224);
+        _centerArea_ScrollView.backgroundColor = [UIColor redColor];
+        //_centerArea_ScrollView.showsHorizontalScrollIndicator = NO;
     }
     return _centerArea_ScrollView;
 }
@@ -115,7 +119,7 @@
 - (UIView *)bottom_View {
     if (!_bottom_View) {
         _bottom_View = [[UIView alloc] init];
-        _bottom_View.backgroundColor = [UIColor whiteColor];
+        _bottom_View.backgroundColor = [UIColor blueColor];
         UIButton *closeButton = [[UIButton alloc] init];
         [closeButton setBackgroundImage:[UIImage imageNamed:@"tabbar_compose_background_icon_close"] forState:UIControlStateNormal];
         [_bottom_View addSubview:closeButton];
