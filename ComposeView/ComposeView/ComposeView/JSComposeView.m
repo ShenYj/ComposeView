@@ -50,12 +50,7 @@
     [self addSubview:self.compose_slogan_IV];
     [self addSubview:self.centerArea_ScrollView];
     [self.centerArea_ScrollView addSubview:self.centerAreaContainer_View];
-    
-    
-
-    self.centerAreaContainer_View.backgroundColor = [UIColor greenColor];
     // 添加菜单区按钮
-    
     [self addButtonsWithIndex:6 withView:self.centerAreaContainer_View];
     
 }
@@ -97,16 +92,17 @@
     
     CGFloat width = [UIScreen mainScreen].bounds.size.width / 3;
     CGFloat height = 224 / 2;
-    NSLog(@"%f,%f",width,[UIScreen mainScreen].bounds.size.width);
     
     for (int i = 0; i < index; i++) {
         NSDictionary *dict = self.buttonDatas[i];
         JSComposeButton *button = [[JSComposeButton alloc] initWithTitle:dict[@"title"] imageName:dict[@"imageName"]];
         button.tag = i;
+        
         NSInteger row = i / 3;
         NSInteger col = i % 3;
         button.frame = CGRectMake(col * width, row * height, width, height);
-        [view addSubview:button];
+        
+        [self.centerAreaContainer_View addSubview:button];
     }
 }
 
@@ -149,6 +145,7 @@
 - (UIView *)centerAreaContainer_View {
     if (!_centerAreaContainer_View) {
         _centerAreaContainer_View = [[UIView alloc] init];
+        _centerAreaContainer_View.backgroundColor = [UIColor whiteColor];
     }
     return _centerAreaContainer_View;
 }
