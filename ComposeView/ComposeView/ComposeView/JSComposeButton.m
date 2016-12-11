@@ -11,8 +11,8 @@
 
 @interface JSComposeButton ()
 
-@property (nonatomic) UIImageView *imageView;
-@property (nonatomic) UILabel *label;
+@property (nonatomic) UIImageView *js_ImageView;
+@property (nonatomic) UILabel *js_Label;
 @end
 
 @implementation JSComposeButton
@@ -28,43 +28,43 @@
 - (void)prepareComposeButtonViewWithTitle:(NSString *)title imageName:(NSString *)imageName {
     self.backgroundColor = [UIColor whiteColor];
     
-    [self addSubview:self.imageView];
-    [self addSubview:self.label];
+    [self addSubview:self.js_ImageView];
+    [self addSubview:self.js_Label];
     
     [self mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(100, 100));
     }];
     
-    [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.js_ImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self);
         make.centerX.mas_equalTo(self);
     }];
     
-    [self.label mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.imageView.mas_bottom).mas_offset(0);
+    [self.js_Label mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.js_ImageView.mas_bottom).mas_offset(0);
         make.bottom.mas_equalTo(self);
         make.centerX.mas_equalTo(self);
     }];
     
-    self.imageView.image = [UIImage imageNamed:imageName];
-    self.label.text = title;
+    self.js_ImageView.image = [UIImage imageNamed:imageName];
+    self.js_Label.text = title;
 }
 
 #pragma mark 
 #pragma mark - lazy
 
 - (UIImageView *)imageView {
-    if (!_imageView) {
-        _imageView = [[UIImageView alloc] init];
+    if (!_js_ImageView) {
+        _js_ImageView = [[UIImageView alloc] init];
     }
-    return _imageView;
+    return _js_ImageView;
 }
 
 - (UILabel *)label {
-    if (!_label) {
-        _label = [[UILabel alloc] init];
+    if (!_js_Label) {
+        _js_Label = [[UILabel alloc] init];
     }
-    return _label;
+    return _js_Label;
 }
 
 @end
