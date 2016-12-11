@@ -140,6 +140,7 @@
         _centerArea_ScrollView = [[UIScrollView alloc] init];
         _centerArea_ScrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width*2, 224);
         _centerArea_ScrollView.backgroundColor = [UIColor redColor];
+        _centerArea_ScrollView.bounces = NO;
         //_centerArea_ScrollView.showsHorizontalScrollIndicator = NO;
     }
     return _centerArea_ScrollView;
