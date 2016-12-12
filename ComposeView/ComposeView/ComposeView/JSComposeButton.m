@@ -27,7 +27,7 @@
 }
 
 - (void)prepareComposeButtonViewWithTitle:(NSString *)title imageName:(NSString *)imageName {
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor clearColor];
     
     [self addSubview:self.js_ImageView];
     [self addSubview:self.js_Label];
@@ -65,6 +65,7 @@
 - (UILabel *)js_Label {
     if (!_js_Label) {
         _js_Label = [[UILabel alloc] init];
+        _js_Label.font = [UIFont systemFontOfSize:16];
     }
     return _js_Label;
 }

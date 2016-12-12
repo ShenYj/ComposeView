@@ -84,14 +84,12 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
     }];
     
     CGFloat kComposeButtonHorizontalMargin = ([UIScreen mainScreen].bounds.size.width - kComposeButtonWH * 3) / (3 + 1);
-    
     [self.centerAreaContainer_View.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSInteger row = idx / 3;
         NSInteger col = idx % 3;
         CGFloat coordinateX = kComposeButtonHorizontalMargin + (kComposeButtonHorizontalMargin + kComposeButtonWH) * col;
         CGFloat coordinateY = (kComposeButtonVerticalMargin + kComposeButtonWH) * row;
         obj.frame = CGRectMake(coordinateX, coordinateY, kComposeButtonWH, kComposeButtonWH);
-
     }];
     
     
@@ -116,7 +114,6 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         NSDictionary *dict = self.buttonDatas[i];
         JSComposeButton *button = [[JSComposeButton alloc] initWithTitle:dict[@"title"] imageName:dict[@"imageName"]];
         button.tag = i;
-        button.backgroundColor = [UIColor greenColor];
         [button addTarget:self action:@selector(clickComposeButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.centerAreaContainer_View addSubview:button];
         
@@ -155,7 +152,8 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         _centerArea_ScrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width*2, 224);
         _centerArea_ScrollView.backgroundColor = [UIColor redColor];
         _centerArea_ScrollView.bounces = NO;
-        //_centerArea_ScrollView.showsHorizontalScrollIndicator = NO;
+        _centerArea_ScrollView.pagingEnabled = YES;
+        _centerArea_ScrollView.showsHorizontalScrollIndicator = NO;
     }
     return _centerArea_ScrollView;
 }
@@ -163,7 +161,7 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
 - (UIView *)centerAreaContainer_View {
     if (!_centerAreaContainer_View) {
         _centerAreaContainer_View = [[UIView alloc] init];
-        _centerAreaContainer_View.backgroundColor = [UIColor whiteColor];
+        _centerAreaContainer_View.backgroundColor = [UIColor orangeColor];
     }
     return _centerAreaContainer_View;
 }
@@ -171,16 +169,18 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
 - (UIView *)bottom_View {
     if (!_bottom_View) {
         _bottom_View = [[UIView alloc] init];
-        _bottom_View.backgroundColor = [UIColor blueColor];
+        _bottom_View.backgroundColor = [UIColor clearColor];
         UIButton *closeButton = [[UIButton alloc] init];
         [closeButton setBackgroundImage:[UIImage imageNamed:@"tabbar_compose_background_icon_close"] forState:UIControlStateNormal];
         [_bottom_View addSubview:closeButton];
         [closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(_bottom_View);
+            //make.top.mas_equalTo(_bottom_View);
             make.centerX.mas_equalTo(_bottom_View);
-            make.height.mas_equalTo(_bottom_View);
-            make.width.mas_equalTo(_bottom_View.mas_height);
+            make.centerY.mas_equalTo(_bottom_View);
+            //make.height.mas_equalTo(_bottom_View);
+            //make.width.mas_equalTo(_bottom_View.mas_height);
         }];
+        [closeButton sizeToFit];
         [closeButton addTarget:self action:@selector(clickCloseButton:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _bottom_View;
