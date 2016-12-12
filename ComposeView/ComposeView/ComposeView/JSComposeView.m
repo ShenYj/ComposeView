@@ -9,6 +9,7 @@
 #import "JSComposeView.h"
 #import "JSComposeButton.h"
 #import "Masonry.h"
+#import "Pop.h"
 
 /** 菜单区按钮的宽高参数 */
 static CGFloat const kComposeButtonWH = 100.f;
@@ -57,7 +58,7 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
     // 添加菜单区视图
     for (int i = 0; i < 2; i ++) {
         UIView *containterView = [[UIView alloc] init];
-        containterView.backgroundColor = [UIColor orangeColor];
+        containterView.backgroundColor = [UIColor clearColor];
         [self.centerArea_ScrollView addSubview:containterView];
         [self addButtonsWithIndex:i*6 withView:containterView];
     }
@@ -146,6 +147,17 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
     [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:self];
     self.frame = [UIScreen mainScreen].bounds;
     
+    // 开始动画
+    [self showCurrentView];
+}
+
+- (void)showCurrentView {
+    
+    POPBasicAnimation *basicAlphaAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    basicAlphaAnimation.fromValue = @0;
+    basicAlphaAnimation.toValue = @1;
+    basicAlphaAnimation.duration = 0.5;
+    [self pop_addAnimation:basicAlphaAnimation forKey:nil];
 }
 
 /** 中间ScrollView的容器视图添加按钮方法 */
