@@ -24,8 +24,6 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
 @property (nonatomic) UIImageView *compose_slogan_IV;
 /** 中间的按钮区ScrollView */
 @property (nonatomic) UIScrollView *centerArea_ScrollView;
-/** 中间按钮去ScrollView中的容器 */
-@property (nonatomic) UIView *centerAreaContainer_View;
 /** 底部View */
 @property (nonatomic) UIView *bottom_View;
 
@@ -55,9 +53,14 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
     [self addSubview:self.bottom_View];
     [self addSubview:self.compose_slogan_IV];
     [self addSubview:self.centerArea_ScrollView];
-    [self.centerArea_ScrollView addSubview:self.centerAreaContainer_View];
-    // 添加菜单区按钮
-    [self addButtonsWithIndex:6 withView:self.centerAreaContainer_View];
+    
+    // 添加菜单区视图
+    for (int i = 0; i < 2; i ++) {
+        UIView *containterView = [[UIView alloc] init];
+        containterView.backgroundColor = [UIColor orangeColor];
+        [self.centerArea_ScrollView addSubview:containterView];
+        [self addButtonsWithIndex:i*6 withView:containterView];
+    }
     
 }
 
@@ -78,20 +81,19 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         make.bottom.mas_equalTo(self.bottom_View.mas_top).mas_offset(-60);
     }];
     
-    [self.centerAreaContainer_View mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(self.centerArea_ScrollView);
-        make.top.left.mas_equalTo(self.centerArea_ScrollView);
-    }];
-    
     CGFloat kComposeButtonHorizontalMargin = ([UIScreen mainScreen].bounds.size.width - kComposeButtonWH * 3) / (3 + 1);
-    [self.centerAreaContainer_View.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSInteger row = idx / 3;
-        NSInteger col = idx % 3;
-        CGFloat coordinateX = kComposeButtonHorizontalMargin + (kComposeButtonHorizontalMargin + kComposeButtonWH) * col;
-        CGFloat coordinateY = (kComposeButtonVerticalMargin + kComposeButtonWH) * row;
-        obj.frame = CGRectMake(coordinateX, coordinateY, kComposeButtonWH, kComposeButtonWH);
-    }];
-    NSLog(@"%zd",self.centerAreaContainer_View.subviews.count);
+    for (int i = 0; i < self.centerArea_ScrollView.subviews.count; i ++) {
+        
+        UIView *containterView = self.centerArea_ScrollView.subviews[i];
+        containterView.frame = CGRectMake([UIScreen mainScreen].bounds.size.width * i, 0, [UIScreen mainScreen].bounds.size.width, 224);
+        [containterView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSInteger row = idx / 3;
+            NSInteger col = idx % 3;
+            CGFloat coordinateX = kComposeButtonHorizontalMargin + (kComposeButtonHorizontalMargin + kComposeButtonWH) * col;
+            CGFloat coordinateY = (kComposeButtonVerticalMargin + kComposeButtonWH) * row;
+            obj.frame = CGRectMake(coordinateX, coordinateY, kComposeButtonWH, kComposeButtonWH);
+        }];
+    }
     
 }
 
@@ -110,7 +112,6 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
 /** 中间ScrollView的容器视图添加按钮方法 */
 - (void)addButtonsWithIndex:(int)index withView:(UIView *)view {
     int count = 6;
-    
     for (int i = index; i < (index + count); i++) {
         if ( i >= self.buttonDatas.count) {
             break;
@@ -120,7 +121,7 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         JSComposeButton *button = [[JSComposeButton alloc] initWithTitle:dict[@"title"] imageName:dict[@"imageName"]];
         button.tag = i;
         [button addTarget:self action:@selector(clickComposeButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self.centerAreaContainer_View addSubview:button];
+        [view addSubview:button];
         
     }
     
@@ -155,20 +156,12 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
     if (!_centerArea_ScrollView) {
         _centerArea_ScrollView = [[UIScrollView alloc] init];
         _centerArea_ScrollView.contentSize = CGSizeMake([UIScreen mainScreen].bounds.size.width*2, 224);
-        _centerArea_ScrollView.backgroundColor = [UIColor redColor];
+        _centerArea_ScrollView.backgroundColor = [UIColor clearColor];
         _centerArea_ScrollView.bounces = NO;
         _centerArea_ScrollView.pagingEnabled = YES;
         _centerArea_ScrollView.showsHorizontalScrollIndicator = NO;
     }
     return _centerArea_ScrollView;
-}
-
-- (UIView *)centerAreaContainer_View {
-    if (!_centerAreaContainer_View) {
-        _centerAreaContainer_View = [[UIView alloc] init];
-        _centerAreaContainer_View.backgroundColor = [UIColor orangeColor];
-    }
-    return _centerAreaContainer_View;
 }
 
 - (UIView *)bottom_View {
