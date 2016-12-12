@@ -160,6 +160,7 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         _centerArea_ScrollView.bounces = NO;
         _centerArea_ScrollView.pagingEnabled = YES;
         _centerArea_ScrollView.showsHorizontalScrollIndicator = NO;
+        _centerArea_ScrollView.scrollEnabled = NO;
     }
     return _centerArea_ScrollView;
 }
@@ -172,11 +173,8 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         [closeButton setBackgroundImage:[UIImage imageNamed:@"tabbar_compose_background_icon_close"] forState:UIControlStateNormal];
         [_bottom_View addSubview:closeButton];
         [closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            //make.top.mas_equalTo(_bottom_View);
             make.centerX.mas_equalTo(_bottom_View);
             make.centerY.mas_equalTo(_bottom_View);
-            //make.height.mas_equalTo(_bottom_View);
-            //make.width.mas_equalTo(_bottom_View.mas_height);
         }];
         [closeButton sizeToFit];
         [closeButton addTarget:self action:@selector(clickCloseButton:) forControlEvents:UIControlEventTouchUpInside];
