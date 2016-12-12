@@ -83,12 +83,12 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         make.top.left.mas_equalTo(self.centerArea_ScrollView);
     }];
     
-    CGFloat kComposeButtonHorizontalMargin = ([UIScreen mainScreen].bounds.size.width - kComposeButtonWH * 3) / 2;
+    CGFloat kComposeButtonHorizontalMargin = ([UIScreen mainScreen].bounds.size.width - kComposeButtonWH * 3) / (3 + 1);
     
     [self.centerAreaContainer_View.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSInteger row = idx / 3;
         NSInteger col = idx % 3;
-        CGFloat coordinateX = (kComposeButtonHorizontalMargin + kComposeButtonWH) * col;
+        CGFloat coordinateX = kComposeButtonHorizontalMargin + (kComposeButtonHorizontalMargin + kComposeButtonWH) * col;
         CGFloat coordinateY = (kComposeButtonVerticalMargin + kComposeButtonWH) * row;
         obj.frame = CGRectMake(coordinateX, coordinateY, kComposeButtonWH, kComposeButtonWH);
 
