@@ -91,7 +91,7 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         CGFloat coordinateY = (kComposeButtonVerticalMargin + kComposeButtonWH) * row;
         obj.frame = CGRectMake(coordinateX, coordinateY, kComposeButtonWH, kComposeButtonWH);
     }];
-    
+    NSLog(@"%zd",self.centerAreaContainer_View.subviews.count);
     
 }
 
@@ -109,8 +109,13 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
 
 /** 中间ScrollView的容器视图添加按钮方法 */
 - (void)addButtonsWithIndex:(int)index withView:(UIView *)view {
+    int count = 6;
     
-    for (int i = 0; i < index; i++) {
+    for (int i = index; i < (index + count); i++) {
+        if ( i >= self.buttonDatas.count) {
+            break;
+        }
+        
         NSDictionary *dict = self.buttonDatas[i];
         JSComposeButton *button = [[JSComposeButton alloc] initWithTitle:dict[@"title"] imageName:dict[@"imageName"]];
         button.tag = i;
