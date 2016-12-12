@@ -10,6 +10,12 @@
 #import "JSComposeButton.h"
 #import "Masonry.h"
 
+/** 菜单区按钮的宽高参数 */
+static CGFloat const kComposeButtonWH = 100.f;
+/** 惨淡去按钮垂直间距 */
+static CGFloat const kComposeButtonVerticalMargin = 24.f;
+
+
 @interface JSComposeView ()
 
 /** 视觉视效 */
@@ -77,22 +83,14 @@
         make.top.left.mas_equalTo(self.centerArea_ScrollView);
     }];
     
-    
-    CGFloat width = [UIScreen mainScreen].bounds.size.width / 3;
-    CGFloat height = 224 / 2;
-//    for (int i = 0; i < self.centerAreaContainer_View.subviews.count; i ++) {
-//        
-//        NSInteger row = i / 3;
-//        NSInteger col = i % 3;
-//        JSComposeButton *button = self.centerAreaContainer_View.subviews[i];
-//        button.frame = CGRectMake(col * width, row * height, width, height);
-//
-//    }
+    CGFloat kComposeButtonHorizontalMargin = ([UIScreen mainScreen].bounds.size.width - kComposeButtonWH * 3) / 2;
     
     [self.centerAreaContainer_View.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSInteger row = idx / 3;
         NSInteger col = idx % 3;
-        obj.frame = CGRectMake(col*width, row*height, width, height);
+        CGFloat coordinateX = (kComposeButtonHorizontalMargin + kComposeButtonWH) * col;
+        CGFloat coordinateY = (kComposeButtonVerticalMargin + kComposeButtonWH) * row;
+        obj.frame = CGRectMake(coordinateX, coordinateY, kComposeButtonWH, kComposeButtonWH);
 
     }];
     
@@ -118,6 +116,7 @@
         NSDictionary *dict = self.buttonDatas[i];
         JSComposeButton *button = [[JSComposeButton alloc] initWithTitle:dict[@"title"] imageName:dict[@"imageName"]];
         button.tag = i;
+        button.backgroundColor = [UIColor greenColor];
         [button addTarget:self action:@selector(clickComposeButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.centerAreaContainer_View addSubview:button];
         
