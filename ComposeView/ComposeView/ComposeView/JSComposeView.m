@@ -77,6 +77,19 @@
         make.top.left.mas_equalTo(self.centerArea_ScrollView);
     }];
     
+    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width / 3;
+    CGFloat height = 224 / 2;
+    for (int i = 0; i < self.centerAreaContainer_View.subviews.count; i ++) {
+        
+        NSInteger row = i / 3;
+        NSInteger col = i % 3;
+        JSComposeButton *button = self.centerAreaContainer_View.subviews[i];
+        button.frame = CGRectMake(col * width, row * height, width, height);
+
+    }
+    
+    
 }
 
 // 展示视图
@@ -90,20 +103,21 @@
 /** 中间ScrollView的容器视图添加按钮方法 */
 - (void)addButtonsWithIndex:(int)index withView:(UIView *)view {
     
-    CGFloat width = [UIScreen mainScreen].bounds.size.width / 3;
-    CGFloat height = 224 / 2;
+//    CGFloat width = [UIScreen mainScreen].bounds.size.width / 3;
+//    CGFloat height = 224 / 2;
     
     for (int i = 0; i < index; i++) {
         NSDictionary *dict = self.buttonDatas[i];
         JSComposeButton *button = [[JSComposeButton alloc] initWithTitle:dict[@"title"] imageName:dict[@"imageName"]];
         button.tag = i;
-        
-        NSInteger row = i / 3;
-        NSInteger col = i % 3;
-        button.frame = CGRectMake(col * width, row * height, width, height);
+//        NSInteger row = i / 3;
+//        NSInteger col = i % 3;
+        //button.frame = CGRectMake(col * width, row * height, width, height);
         
         [self.centerAreaContainer_View addSubview:button];
+        
     }
+    
 }
 
 #pragma mark

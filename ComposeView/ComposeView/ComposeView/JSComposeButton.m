@@ -13,6 +13,7 @@
 
 @property (nonatomic) UIImageView *js_ImageView;
 @property (nonatomic) UILabel *js_Label;
+
 @end
 
 @implementation JSComposeButton
