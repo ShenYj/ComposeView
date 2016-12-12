@@ -8,5 +8,6 @@ target 'ComposeView' do
   # Pods for ComposeView
 
 pod 'Masonry'
+pod 'pop'
 
 end

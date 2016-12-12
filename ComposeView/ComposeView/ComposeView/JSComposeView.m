@@ -104,7 +104,7 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
     [self.centerArea_ScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     [self.bottom_View.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (idx == 0) {
-            obj.hidden = YES;
+            obj.alpha = 0.01;
         }
         [UIView animateWithDuration:0.25 animations:^{
             
@@ -128,10 +128,10 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
     
     [self.bottom_View.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         CGFloat offsetX = idx == 0 ?  -1*40 : 40;
-        obj.hidden = NO;
         
         [UIView animateWithDuration:0.25 animations:^{
             
+            obj.alpha = 1;
             [obj mas_updateConstraints:^(MASConstraintMaker *make) {
                 make.centerX.mas_equalTo(self.bottom_View).mas_offset(offsetX);
             }];
@@ -211,7 +211,7 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         _bottom_View.backgroundColor = [UIColor clearColor];
         UIButton *backButton = [[UIButton alloc] init];
         UIButton *closeButton = [[UIButton alloc] init];
-        backButton.hidden = YES;
+        backButton.alpha = 0.01;
         [backButton setBackgroundImage:[UIImage imageNamed:@"tabbar_compose_background_icon_return"] forState:UIControlStateNormal];
         [closeButton setBackgroundImage:[UIImage imageNamed:@"tabbar_compose_background_icon_close"] forState:UIControlStateNormal];
         [_bottom_View addSubview:backButton];
