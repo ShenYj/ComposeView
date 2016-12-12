@@ -100,6 +100,21 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
 #pragma mark
 #pragma mark - target
 
+- (void)clickBackButton:(UIButton *)sender {
+    [self.centerArea_ScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+    [self.bottom_View.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (idx == 0) {
+            obj.hidden = YES;
+        }
+        [UIView animateWithDuration:0.25 animations:^{
+            
+            [obj mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.centerY.centerX.mas_equalTo(self.bottom_View);
+            }];
+            [self layoutIfNeeded];
+        }];
+    }];
+}
 - (void)clickCloseButton:(UIButton *)sender {
     [self removeFromSuperview];
 }
@@ -108,7 +123,21 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
 }
 
 - (void)clickMore {
+    
     [self.centerArea_ScrollView setContentOffset:CGPointMake([UIScreen mainScreen].bounds.size.width, 0) animated:YES];
+    
+    [self.bottom_View.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CGFloat offsetX = idx == 0 ?  -1*40 : 40;
+        obj.hidden = NO;
+        
+        [UIView animateWithDuration:0.25 animations:^{
+            
+            [obj mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.centerX.mas_equalTo(self.bottom_View).mas_offset(offsetX);
+            }];
+            [self layoutIfNeeded];
+        }];
+    }];
 }
 
 // 展示视图
@@ -180,15 +209,24 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
     if (!_bottom_View) {
         _bottom_View = [[UIView alloc] init];
         _bottom_View.backgroundColor = [UIColor clearColor];
+        UIButton *backButton = [[UIButton alloc] init];
         UIButton *closeButton = [[UIButton alloc] init];
+        backButton.hidden = YES;
+        [backButton setBackgroundImage:[UIImage imageNamed:@"tabbar_compose_background_icon_return"] forState:UIControlStateNormal];
         [closeButton setBackgroundImage:[UIImage imageNamed:@"tabbar_compose_background_icon_close"] forState:UIControlStateNormal];
+        [_bottom_View addSubview:backButton];
         [_bottom_View addSubview:closeButton];
-        [closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.mas_equalTo(_bottom_View);
-            make.centerY.mas_equalTo(_bottom_View);
-        }];
+        [backButton sizeToFit];
         [closeButton sizeToFit];
+        [backButton addTarget:self action:@selector(clickBackButton:) forControlEvents:UIControlEventTouchUpInside];
         [closeButton addTarget:self action:@selector(clickCloseButton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [backButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.centerY.mas_equalTo(_bottom_View);
+        }];
+        [closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.centerY.mas_equalTo(_bottom_View);
+        }];
     }
     return _bottom_View;
 }
