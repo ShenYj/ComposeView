@@ -157,7 +157,7 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
     POPBasicAnimation *basicAlphaAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
     basicAlphaAnimation.fromValue = @0;
     basicAlphaAnimation.toValue = @1;
-    basicAlphaAnimation.duration = 02;
+    basicAlphaAnimation.duration = 0.25;
     [self pop_addAnimation:basicAlphaAnimation forKey:nil];
 }
 /** 弹力显示所有按钮的动画 */
@@ -178,7 +178,8 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         
         sprintAnimation.fromValue = @(obj.center.y + 400);
         sprintAnimation.toValue = @(obj.center.y);
-        sprintAnimation.springBounciness = 12;
+        sprintAnimation.springBounciness = 10;
+        sprintAnimation.springSpeed = 10;
         [obj pop_addAnimation:sprintAnimation forKey:nil];
     }];
 }
