@@ -58,10 +58,11 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
     // 添加菜单区视图
     for (int i = 0; i < 2; i ++) {
         UIView *containterView = [[UIView alloc] init];
-        containterView.backgroundColor = [UIColor clearColor];
+        containterView.backgroundColor = [UIColor orangeColor];
         [self.centerArea_ScrollView addSubview:containterView];
         [self addButtonsWithIndex:i*6 withView:containterView];
     }
+    
     
 }
 
@@ -94,9 +95,7 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
             CGFloat coordinateY = (kComposeButtonVerticalMargin + kComposeButtonWH) * row;
             obj.frame = CGRectMake(coordinateX, coordinateY, kComposeButtonWH, kComposeButtonWH);
         }];
-    }
-    
-}
+    }}
 
 #pragma mark
 #pragma mark - target
@@ -143,21 +142,45 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
 
 // 展示视图
 - (void)showComposeView {
-    
+    // 添加到视图
     [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:self];
     self.frame = [UIScreen mainScreen].bounds;
-    
     // 开始动画
     [self showCurrentView];
+    // 添加按钮的动画
+    [self showButtons];
+    
 }
-
+/** 展示视图时的动画 */
 - (void)showCurrentView {
     
     POPBasicAnimation *basicAlphaAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
     basicAlphaAnimation.fromValue = @0;
     basicAlphaAnimation.toValue = @1;
-    basicAlphaAnimation.duration = 0.5;
+    basicAlphaAnimation.duration = 02;
     [self pop_addAnimation:basicAlphaAnimation forKey:nil];
+}
+/** 弹力显示所有按钮的动画 */
+- (void)showButtons {
+    
+    UIView *firstContainterView = self.centerArea_ScrollView.subviews.firstObject;
+    CGFloat kComposeButtonHorizontalMargin = ([UIScreen mainScreen].bounds.size.width - kComposeButtonWH * 3) / (3 + 1);
+    
+    [firstContainterView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        // 动画
+        POPSpringAnimation *sprintAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+        
+        NSInteger row = idx / 3;
+        NSInteger col = idx % 3;
+        CGFloat coordinateX = kComposeButtonHorizontalMargin + (kComposeButtonHorizontalMargin + kComposeButtonWH) * col;
+        CGFloat coordinateY = (kComposeButtonVerticalMargin + kComposeButtonWH) * row;
+        obj.frame = CGRectMake(coordinateX, coordinateY, kComposeButtonWH, kComposeButtonWH);
+        
+        sprintAnimation.fromValue = @(obj.center.y + 400);
+        sprintAnimation.toValue = @(obj.center.y);
+        sprintAnimation.springBounciness = 12;
+        [obj pop_addAnimation:sprintAnimation forKey:nil];
+    }];
 }
 
 /** 中间ScrollView的容器视图添加按钮方法 */
@@ -213,6 +236,7 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         _centerArea_ScrollView.showsHorizontalScrollIndicator = NO;
         _centerArea_ScrollView.showsVerticalScrollIndicator = NO;
         _centerArea_ScrollView.scrollEnabled = NO;
+        _centerArea_ScrollView.clipsToBounds = NO;
     }
     return _centerArea_ScrollView;
 }
