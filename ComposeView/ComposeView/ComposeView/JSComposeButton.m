@@ -49,19 +49,21 @@
     
     self.js_ImageView.image = [UIImage imageNamed:imageName];
     self.js_Label.text = title;
+    NSLog(@"%@,%@--->%@,%@",title,imageName,self.js_Label.text,self.js_ImageView.image);
+    
 }
 
 #pragma mark 
 #pragma mark - lazy
 
-- (UIImageView *)imageView {
+- (UIImageView *)js_ImageView {
     if (!_js_ImageView) {
         _js_ImageView = [[UIImageView alloc] init];
     }
     return _js_ImageView;
 }
 
-- (UILabel *)label {
+- (UILabel *)js_Label {
     if (!_js_Label) {
         _js_Label = [[UILabel alloc] init];
     }
