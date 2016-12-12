@@ -80,16 +80,27 @@
     
     CGFloat width = [UIScreen mainScreen].bounds.size.width / 3;
     CGFloat height = 224 / 2;
-    for (int i = 0; i < self.centerAreaContainer_View.subviews.count; i ++) {
-        
-        NSInteger row = i / 3;
-        NSInteger col = i % 3;
-        JSComposeButton *button = self.centerAreaContainer_View.subviews[i];
-        button.frame = CGRectMake(col * width, row * height, width, height);
+//    for (int i = 0; i < self.centerAreaContainer_View.subviews.count; i ++) {
+//        
+//        NSInteger row = i / 3;
+//        NSInteger col = i % 3;
+//        JSComposeButton *button = self.centerAreaContainer_View.subviews[i];
+//        button.frame = CGRectMake(col * width, row * height, width, height);
+//
+//    }
+    
+    [self.centerAreaContainer_View.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSInteger row = idx / 3;
+        NSInteger col = idx % 3;
+        obj.frame = CGRectMake(col*width, row*height, width, height);
 
-    }
+    }];
     
     
+}
+
+- (void)clickComposeButton:(JSComposeButton *)composeButton {
+    NSLog(@"%s",__func__);
 }
 
 // 展示视图
@@ -103,17 +114,11 @@
 /** 中间ScrollView的容器视图添加按钮方法 */
 - (void)addButtonsWithIndex:(int)index withView:(UIView *)view {
     
-//    CGFloat width = [UIScreen mainScreen].bounds.size.width / 3;
-//    CGFloat height = 224 / 2;
-    
     for (int i = 0; i < index; i++) {
         NSDictionary *dict = self.buttonDatas[i];
         JSComposeButton *button = [[JSComposeButton alloc] initWithTitle:dict[@"title"] imageName:dict[@"imageName"]];
         button.tag = i;
-//        NSInteger row = i / 3;
-//        NSInteger col = i % 3;
-        //button.frame = CGRectMake(col * width, row * height, width, height);
-        
+        [button addTarget:self action:@selector(clickComposeButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.centerAreaContainer_View addSubview:button];
         
     }

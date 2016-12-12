@@ -49,7 +49,6 @@
     
     self.js_ImageView.image = [UIImage imageNamed:imageName];
     self.js_Label.text = title;
-    NSLog(@"%@,%@--->%@,%@",title,imageName,self.js_Label.text,self.js_ImageView.image);
     
 }
 
