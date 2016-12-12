@@ -97,8 +97,18 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
     
 }
 
+#pragma mark
+#pragma mark - target
+
+- (void)clickCloseButton:(UIButton *)sender {
+    [self removeFromSuperview];
+}
 - (void)clickComposeButton:(JSComposeButton *)composeButton {
     NSLog(@"%s",__func__);
+}
+
+- (void)clickMore {
+    [self.centerArea_ScrollView setContentOffset:CGPointMake([UIScreen mainScreen].bounds.size.width, 0) animated:YES];
 }
 
 // 展示视图
@@ -120,19 +130,19 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         NSDictionary *dict = self.buttonDatas[i];
         JSComposeButton *button = [[JSComposeButton alloc] initWithTitle:dict[@"title"] imageName:dict[@"imageName"]];
         button.tag = i;
-        [button addTarget:self action:@selector(clickComposeButton:) forControlEvents:UIControlEventTouchUpInside];
+        
+        if (dict[@"actionName"]) {
+            NSString *actionName = dict[@"actionName"];
+            [button addTarget:self action:NSSelectorFromString(actionName) forControlEvents:UIControlEventTouchUpInside];
+        } else {
+            
+            [button addTarget:self action:@selector(clickComposeButton:) forControlEvents:UIControlEventTouchUpInside];
+        }
         [view addSubview:button];
         
     }
     
 }
-
-#pragma mark
-#pragma mark 
-- (void)clickCloseButton:(UIButton *)sender {
-    [self removeFromSuperview];
-}
-
 
 #pragma mark
 #pragma mark - lazy
@@ -160,6 +170,7 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         _centerArea_ScrollView.bounces = NO;
         _centerArea_ScrollView.pagingEnabled = YES;
         _centerArea_ScrollView.showsHorizontalScrollIndicator = NO;
+        _centerArea_ScrollView.showsVerticalScrollIndicator = NO;
         _centerArea_ScrollView.scrollEnabled = NO;
     }
     return _centerArea_ScrollView;
