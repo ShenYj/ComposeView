@@ -148,10 +148,14 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         alphaANimation.duration = 0.25;
         [obj pop_addAnimation:alphaANimation forKey:nil];
         
-        [zoomAnimation setCompletionBlock:^(POPAnimation *animation, BOOL _) {
-            [self removeFromSuperview];
-            
-        }];
+        if (idx == 0) {
+            // 不需要每个按钮的动画都监听,因为同时进行,所以随便监听一个即可
+            [zoomAnimation setCompletionBlock:^(POPAnimation *animation, BOOL _) {
+                [self removeFromSuperview];
+                
+            }];
+        }
+        
     
     }];
     
