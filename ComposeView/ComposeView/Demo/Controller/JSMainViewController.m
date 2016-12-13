@@ -43,7 +43,9 @@
     [composeView showComposeViewWithCompeletionHandler:^(NSString *clsName) {
         Class class = NSClassFromString(clsName);
         UIViewController *viewController = [[class alloc] init];
-        [weakSelf presentViewController:viewController animated:YES completion:nil];
+        viewController.title = clsName;
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+        [weakSelf presentViewController:navController animated:YES completion:nil];
     }];
     
 }
