@@ -43,6 +43,10 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
     return self;
 }
 
+- (void)dealloc {
+    NSLog(@"%s",__func__);
+}
+
 - (void)prepareView {
     self.backgroundColor = [UIColor clearColor];
     
@@ -58,7 +62,7 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
     // 添加菜单区视图
     for (int i = 0; i < 2; i ++) {
         UIView *containterView = [[UIView alloc] init];
-        containterView.backgroundColor = [UIColor orangeColor];
+        containterView.backgroundColor = [UIColor clearColor];
         [self.centerArea_ScrollView addSubview:containterView];
         [self addButtonsWithIndex:i*6 withView:containterView];
     }
@@ -95,7 +99,12 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
             CGFloat coordinateY = (kComposeButtonVerticalMargin + kComposeButtonWH) * row;
             obj.frame = CGRectMake(coordinateX, coordinateY, kComposeButtonWH, kComposeButtonWH);
         }];
-    }}
+    }
+    
+
+}
+
+
 
 #pragma mark
 #pragma mark - target
@@ -115,9 +124,11 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         }];
     }];
 }
+
 - (void)clickCloseButton:(UIButton *)sender {
-    [self removeFromSuperview];
+    [self hiddenButtons];
 }
+
 - (void)clickComposeButton:(JSComposeButton *)composeButton {
     NSLog(@"%s",__func__);
 }
@@ -175,13 +186,58 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         CGFloat coordinateX = kComposeButtonHorizontalMargin + (kComposeButtonHorizontalMargin + kComposeButtonWH) * col;
         CGFloat coordinateY = (kComposeButtonVerticalMargin + kComposeButtonWH) * row;
         obj.frame = CGRectMake(coordinateX, coordinateY, kComposeButtonWH, kComposeButtonWH);
-        
+
         sprintAnimation.fromValue = @(obj.center.y + 400);
         sprintAnimation.toValue = @(obj.center.y);
-        sprintAnimation.springBounciness = 10;
+        sprintAnimation.springBounciness = 8;
         sprintAnimation.springSpeed = 10;
-        [obj pop_addAnimation:sprintAnimation forKey:nil];
+        sprintAnimation.beginTime = CACurrentMediaTime() + idx * 0.025;
+        
+        [obj.layer pop_addAnimation:sprintAnimation forKey:nil];
     }];
+    
+}
+/** 关闭视图隐藏按钮的动画 */
+- (void)hiddenButtons {
+    
+    NSInteger currentDispagePage = self.centerArea_ScrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width;
+    UIView *currentDisplayContainterView = self.centerArea_ScrollView.subviews[currentDispagePage];
+    
+    [currentDisplayContainterView.subviews enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        POPSpringAnimation *hiddenAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerPositionY];
+        hiddenAnimation.fromValue = @(obj.center.y);
+        hiddenAnimation.toValue = @(obj.center.y + 400);
+        hiddenAnimation.beginTime = CACurrentMediaTime() + (currentDisplayContainterView.subviews.count - idx) * 0.025;
+        hiddenAnimation.springBounciness = 8;
+        hiddenAnimation.springSpeed = 10;
+        
+        [obj.layer pop_addAnimation:hiddenAnimation forKey:nil];
+        
+        if (idx == 0 || idx == 6) {
+            [hiddenAnimation setCompletionBlock:^(POPAnimation *animation, BOOL _) {
+                [self hiddenCurrentView];
+            }];
+        }
+        
+    }];
+}
+
+/** 隐藏自身视图 */
+- (void)hiddenCurrentView {
+    
+    POPBasicAnimation *hiddenAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+    
+    hiddenAnimation.fromValue = @1;
+    hiddenAnimation.toValue = @0;
+    hiddenAnimation.duration = 0.25;
+    
+    [self pop_addAnimation:hiddenAnimation forKey:nil];
+    
+    [hiddenAnimation setCompletionBlock:^(POPAnimation *animation, BOOL _ ) {
+        [self removeFromSuperview];
+    }];
+    
 }
 
 /** 中间ScrollView的容器视图添加按钮方法 */
