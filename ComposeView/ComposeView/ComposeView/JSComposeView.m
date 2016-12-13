@@ -214,7 +214,7 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         
         [obj.layer pop_addAnimation:hiddenAnimation forKey:nil];
         
-        if (idx == 0 || idx == 6) {
+        if (idx == 0) {
             [hiddenAnimation setCompletionBlock:^(POPAnimation *animation, BOOL _) {
                 [self hiddenCurrentView];
             }];
@@ -250,7 +250,10 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         
         NSDictionary *dict = self.buttonDatas[i];
         JSComposeButton *button = [[JSComposeButton alloc] initWithTitle:dict[@"title"] imageName:dict[@"imageName"]];
-        button.tag = i;
+        
+        if (dict[@"clsName"]) {
+            button.clsName = dict[@"clsName"];
+        }
         
         if (dict[@"actionName"]) {
             NSString *actionName = dict[@"actionName"];

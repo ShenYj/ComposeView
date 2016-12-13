@@ -12,4 +12,7 @@
 
 - (instancetype)initWithTitle:(NSString *)title imageName:(NSString *)imageName;
 
+/** 展示的控制器类名 */
+@property (nonatomic,copy) NSString *clsName;
+
 @end
