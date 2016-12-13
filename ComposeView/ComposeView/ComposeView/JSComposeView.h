@@ -11,6 +11,6 @@
 @interface JSComposeView : UIView
 
 /** 展示编辑视图,供外界调用 */
-- (void)showComposeView;
+- (void)showComposeViewWithCompeletionHandler:(void (^)(NSString *clsName))compeletionHandler;
 
 @end

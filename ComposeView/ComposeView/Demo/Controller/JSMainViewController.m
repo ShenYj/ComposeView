@@ -39,7 +39,12 @@
 - (void)tabBar:(JSTabBar *)tabBar withComposeButtonClick:(UIButton *)composeButton {
     
     JSComposeView *composeView = [[JSComposeView alloc] init];
-    [composeView showComposeView];
+    __weak typeof(self) weakSelf = self;
+    [composeView showComposeViewWithCompeletionHandler:^(NSString *clsName) {
+        Class class = NSClassFromString(clsName);
+        UIViewController *viewController = [[class alloc] init];
+        [weakSelf presentViewController:viewController animated:YES completion:nil];
+    }];
     
 }
 

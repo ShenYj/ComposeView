@@ -28,6 +28,8 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
 /** 底部View */
 @property (nonatomic) UIView *bottom_View;
 
+/** 记录完成回调Block*/
+@property (nonatomic,copy) void(^compeletionHandler)();
 /** 按钮数组数据 */
 @property (nonatomic) NSArray *buttonDatas;
 
@@ -150,13 +152,14 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
         
         if (idx == 0) {
             // 不需要每个按钮的动画都监听,因为同时进行,所以随便监听一个即可
-            [zoomAnimation setCompletionBlock:^(POPAnimation *animation, BOOL _) {
-                [self removeFromSuperview];
+            __weak typeof(self) weakSelf = self;
+            [alphaANimation setCompletionBlock:^(POPAnimation *animation, BOOL _) {
+                [weakSelf removeFromSuperview];
+                weakSelf.compeletionHandler(composeButton.clsName);
                 
             }];
         }
         
-    
     }];
     
 }
@@ -180,7 +183,9 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
 }
 
 // 展示视图
-- (void)showComposeView {
+- (void)showComposeViewWithCompeletionHandler:(void (^)(NSString *clsName))compeletionHandler {
+    // 记录完成回调
+    self.compeletionHandler = compeletionHandler;
     // 添加到视图
     [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:self];
     self.frame = [UIScreen mainScreen].bounds;
