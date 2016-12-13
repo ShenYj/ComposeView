@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		236E066F9F611AA7FBF22D80 /* libPods-ComposeView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C03195B6DAE13D37C4CD4A55 /* libPods-ComposeView.a */; };
+		F71F2CA11DFFCC05002311BC /* JSTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F71F2CA01DFFCC05002311BC /* JSTextViewController.m */; };
 		F7B378851DF8F69400F17353 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B378791DF8F69400F17353 /* ViewController.m */; };
 		F7B378861DF8F69400F17353 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F7B3787D1DF8F69400F17353 /* AppDelegate.m */; };
 		F7B378871DF8F69400F17353 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7B3787E1DF8F69400F17353 /* Assets.xcassets */; };
@@ -22,6 +23,8 @@
 /* Begin PBXFileReference section */
 		C03195B6DAE13D37C4CD4A55 /* libPods-ComposeView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ComposeView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F510BB5815BBD71A267DBE2E /* Pods-ComposeView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComposeView.release.xcconfig"; path = "Pods/Target Support Files/Pods-ComposeView/Pods-ComposeView.release.xcconfig"; sourceTree = "<group>"; };
+		F71F2C9F1DFFCC05002311BC /* JSTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSTextViewController.h; sourceTree = "<group>"; };
+		F71F2CA01DFFCC05002311BC /* JSTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSTextViewController.m; sourceTree = "<group>"; };
 		F7B3785C1DF8F63300F17353 /* ComposeView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComposeView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7B378701DF8F63300F17353 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../Info.plist; sourceTree = "<group>"; };
 		F7B378781DF8F69400F17353 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -156,6 +159,8 @@
 				F7B378951DF9066600F17353 /* JSComposeView.m */,
 				F7B742271DFA4FAC0077C713 /* JSComposeButton.h */,
 				F7B742281DFA4FAC0077C713 /* JSComposeButton.m */,
+				F71F2C9F1DFFCC05002311BC /* JSTextViewController.h */,
+				F71F2CA01DFFCC05002311BC /* JSTextViewController.m */,
 			);
 			path = ComposeView;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 			files = (
 				F7B378861DF8F69400F17353 /* AppDelegate.m in Sources */,
 				F7B378931DF8F97800F17353 /* JSTabBar.m in Sources */,
+				F71F2CA11DFFCC05002311BC /* JSTextViewController.m in Sources */,
 				F7B378961DF9066600F17353 /* JSComposeView.m in Sources */,
 				F7B3788A1DF8F69400F17353 /* main.m in Sources */,
 				F7B3788E1DF8F76200F17353 /* JSMainViewController.m in Sources */,

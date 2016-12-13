@@ -130,7 +130,31 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
 }
 
 - (void)clickComposeButton:(JSComposeButton *)composeButton {
-    NSLog(@"%s",__func__);
+    
+    NSInteger currentContainterViewIndex = self.centerArea_ScrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width;
+    UIView *currentContainterView = self.centerArea_ScrollView.subviews[currentContainterViewIndex];
+    
+    [currentContainterView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        // 缩放
+        POPBasicAnimation *zoomAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewScaleXY];
+        zoomAnimation.duration = 0.25;
+        CGFloat scale = composeButton == obj ? 2 : 0.5;
+        zoomAnimation.toValue = [NSValue valueWithCGPoint:CGPointMake(scale, scale)];
+        [obj pop_addAnimation:zoomAnimation forKey:nil];
+        // 透明度
+        POPBasicAnimation *alphaANimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
+        alphaANimation.fromValue = @1;
+        alphaANimation.toValue = @0;
+        alphaANimation.duration = 0.25;
+        [obj pop_addAnimation:alphaANimation forKey:nil];
+        
+        [zoomAnimation setCompletionBlock:^(POPAnimation *animation, BOOL _) {
+            [self removeFromSuperview];
+            
+        }];
+    
+    }];
+    
 }
 
 - (void)clickMore {
@@ -330,7 +354,7 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
 - (NSArray *)buttonDatas {
     if (!_buttonDatas) {
         _buttonDatas =  @[
-                          @{@"imageName": @"tabbar_compose_idea", @"title": @"文字", @"clsName": @"WBComposeViewController"},
+                          @{@"imageName": @"tabbar_compose_idea", @"title": @"文字", @"clsName": @"JSTextViewController"},
                           @{@"imageName": @"tabbar_compose_photo", @"title": @"照片/视频"},
                           @{@"imageName": @"tabbar_compose_weibo", @"title": @"长微博"},
                           @{@"imageName": @"tabbar_compose_lbs", @"title": @"签到"},
