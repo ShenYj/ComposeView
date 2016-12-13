@@ -4,6 +4,8 @@
 
 自定义撰写/编辑菜单区视图
 
+![demo](https://github.com/ShenYj/ComposeView/blob/master/ComposeViewDemo.gif?raw=true)
+
 >> 说明：
 >>>1.使用了自定义UIView方式模仿新浪微博撰写/编辑菜单区视图,在使用时,只需实例化,调用`showComposeView`即可<br>
 ```
