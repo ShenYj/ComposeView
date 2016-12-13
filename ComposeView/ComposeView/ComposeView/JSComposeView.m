@@ -364,15 +364,15 @@ static CGFloat const kComposeButtonVerticalMargin = 24.f;
     if (!_buttonDatas) {
         _buttonDatas =  @[
                           @{@"imageName": @"tabbar_compose_idea", @"title": @"文字", @"clsName": @"JSTextViewController"},
-                          @{@"imageName": @"tabbar_compose_photo", @"title": @"照片/视频"},
-                          @{@"imageName": @"tabbar_compose_weibo", @"title": @"长微博"},
-                          @{@"imageName": @"tabbar_compose_lbs", @"title": @"签到"},
-                          @{@"imageName": @"tabbar_compose_review", @"title": @"点评"},
-                          @{@"imageName": @"tabbar_compose_more", @"title": @"更多", @"actionName": @"clickMore"},
-                          @{@"imageName": @"tabbar_compose_friend", @"title": @"好友圈"},
-                          @{@"imageName": @"tabbar_compose_wbcamera", @"title": @"微博相机"},
-                          @{@"imageName": @"tabbar_compose_music", @"title": @"音乐"},
-                          @{@"imageName": @"tabbar_compose_shooting", @"title": @"拍摄"}
+                          @{@"imageName": @"tabbar_compose_photo", @"title": @"照片/视频", @"clsName": @"JSTextViewController"},
+                          @{@"imageName": @"tabbar_compose_weibo", @"title": @"长微博", @"clsName": @"JSTextViewController"},
+                          @{@"imageName": @"tabbar_compose_lbs", @"title": @"签到", @"clsName": @"JSTextViewController"},
+                          @{@"imageName": @"tabbar_compose_review", @"title": @"点评", @"clsName": @"JSTextViewController"},
+                          @{@"imageName": @"tabbar_compose_more", @"title": @"更多", @"actionName": @"clickMore", @"clsName": @"JSTextViewController"},
+                          @{@"imageName": @"tabbar_compose_friend", @"title": @"好友圈", @"clsName": @"JSTextViewController"},
+                          @{@"imageName": @"tabbar_compose_wbcamera", @"title": @"微博相机", @"clsName": @"JSTextViewController"},
+                          @{@"imageName": @"tabbar_compose_music", @"title": @"音乐", @"clsName": @"JSTextViewController"},
+                          @{@"imageName": @"tabbar_compose_shooting", @"title": @"拍摄", @"clsName": @"JSTextViewController"}
                           ];
 
     }
