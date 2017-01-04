@@ -20,8 +20,6 @@
 - [x] 5.在点击菜单区按钮时,点中按钮放大,其他按钮缩小,同时渐隐,直到`alpha`为零后,remove当前视图,并展示新的控制器
 
 ## e.g.:
-
-    ```
     JSComposeView *composeView = [[JSComposeView alloc] init];
     __weak typeof(self) weakSelf = self;
     [composeView showComposeViewWithCompeletionHandler:^(NSString *clsName) {
@@ -31,4 +29,4 @@
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
         [weakSelf presentViewController:navController animated:YES completion:nil];
     }];
-    ```
+    
